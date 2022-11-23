@@ -94,7 +94,7 @@ posts.forEach((element, i) => {
     // Sezione like con pulsante
     const likes = document.getElementsByClassName("likes");
     const likesCta = document.getElementsByClassName("likes__cta");
-    likesCta[i].innerHTML = `<a class="like-button  js-like-button"  data-postid="${element.id}">
+    likesCta[i].innerHTML += `<a class="like-button  js-like-button"  data-postid="${element.id}">
     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
     <span class="like-button__label">
     Mi Piace
@@ -107,25 +107,34 @@ posts.forEach((element, i) => {
 
 // Array con id dei post piaciuti
 const liked = [];
-
+let postLiked = false;
 // Click sul tasto like
 for(let i = 0; i < posts.length; i++){
     document.getElementsByClassName("like-button")[i].addEventListener("click",
         function(){
-            this.classList.add("like-button--liked");
+            this.classList.toggle("like-button--liked");
             liked.push(posts[i].id);
+            if (postLiked === false){
+                postLiked = true;
+                posts[i].likes++
+
+            } else{
+                postLiked = false;
+                posts[i].likes--
+            }
+            document.getElementsByClassName("js-likes-counter")[i].innerHTML = posts[i].likes;
+
         }
     )
 };
 
-// Funzione per recuperare le prime lettere del nome
+// Funzione per recuperare la prime lettera del nome e del cognome
 function nameSplit(splitName){
     const nameArray = splitName.split(" ");
     let finalArray = [];
     nameArray.forEach (element => {
         finalArray.push(element.charAt(0));
     })
-    console.log(finalArray);
     return finalArray;
-}
+};
 
