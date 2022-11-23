@@ -79,7 +79,7 @@ posts.forEach((element, i) => {
     // Nome e data creazione post
     const postMetaData = document.getElementsByClassName("post-meta__data");
     postMetaData[i].innerHTML += `<div class="post-meta__author">${element.author.name}</div>`;
-    postMetaData[i].innerHTML += `<div class="post-meta__time">${element.created}</div>`;
+    postMetaData[i].innerHTML += `<div class="post-meta__time">${element.created.split("-").reverse().join("-")}</div>`;
 
     // Testo e contenuto
     post[i].innerHTML += `<div class="post__text">${element.content}</div>`
