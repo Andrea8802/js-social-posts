@@ -71,7 +71,7 @@ posts.forEach((element, i) => {
 
     // Immagine profilo
     const postMeta = document.getElementsByClassName("post-meta");
-    postMeta[i].innerHTML += `<div class="post-meta__icon"> <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}' Pics"> </div>`;
+    postMeta[i].innerHTML += `<div class="post-meta__icon"> <img class="profile-pic" src="${element.author.image}" alt="${element.author.image === null ? nameSplit(element.author.name) : ""}"> </div>`;
     postMeta[i].innerHTML += `<div class="post-meta__data"></div>`;
     
     // Body-----
@@ -116,4 +116,16 @@ for(let i = 0; i < posts.length; i++){
             liked.push(posts[i].id);
         }
     )
+};
+
+// Funzione per recuperare le prime lettere del nome
+function nameSplit(splitName){
+    const nameArray = splitName.split(" ");
+    let finalArray = [];
+    nameArray.forEach (element => {
+        finalArray.push(element.charAt(0));
+    })
+    console.log(finalArray);
+    return finalArray;
 }
+
