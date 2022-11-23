@@ -60,49 +60,38 @@ const posts = [
 // Ciclo per aggiungere post
 posts.forEach((element, i) => {
 
-    // Container
-    document.getElementById("container").innerHTML += `<div class="post"></div>`;
-    
-    // Header-----
+     // Stampare tutti i post con i valori in base agli indici
+     document.getElementById("container").innerHTML += `<div class="post">
+     <div class="post__header">
+         <div class="post-meta">                    
+             <div class="post-meta__icon">
+                <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">                    
+             </div>
+             <div class="post-meta__data">
+                 <div class="post-meta__author">${element.author.name}</div>
+                 <div class="post-meta__time"></div>
+             </div>                    
+         </div>
+     </div>
+     <div class="post__text">${element.content}</div>
+     <div class="post__image">
+         <img src="${element.media}" alt="">
+     </div>
+     <div class="post__footer">
+         <div class="likes js-likes">
+             <div class="likes__cta">
+                 <a class="like-button  js-like-button" href="#" data-postid="${element.id}">
+                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                     <span class="like-button__label">Mi Piace</span>
+                 </a>
+             </div>
+             <div class="likes__counter">
+                 Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+             </div>
+         </div> 
+     </div>            
+ </div>`;
 
-    // Post
-    const post = document.getElementsByClassName("post");
-    post[i].innerHTML += `<div class="post__header"> <div class="post-meta"></div> </div>`;
-
-    // Immagine profilo
-    const postMeta = document.getElementsByClassName("post-meta");
-    postMeta[i].innerHTML += `<div class="post-meta__icon"> <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}' Pics"> </div>`;
-    postMeta[i].innerHTML += `<div class="post-meta__data"></div>`;
-    
-    // Body-----
-
-    // Nome e data creazione post
-    const postMetaData = document.getElementsByClassName("post-meta__data");
-    postMetaData[i].innerHTML += `<div class="post-meta__author">${element.author.name}</div>`;
-    postMetaData[i].innerHTML += `<div class="post-meta__time">${element.created}</div>`;
-
-    // Testo e contenuto
-    post[i].innerHTML += `<div class="post__text">${element.content}</div>`
-    post[i].innerHTML += `<div class="post__image"> <img src="${element.media}"> </div>`;
-    post[i].innerHTML += `<div class="post__footer"></div>`;
-
-    // Footer-----
-
-    const postFooter = document.getElementsByClassName("post__footer");
-    postFooter[i].innerHTML = `<div class="likes js-likes"> <div class="likes__cta"></div> </div>`;
-
-    // Sezione like con pulsante
-    const likes = document.getElementsByClassName("likes");
-    const likesCta = document.getElementsByClassName("likes__cta");
-    likesCta[i].innerHTML = `<a class="like-button  js-like-button"  data-postid="${element.id}">
-    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-    <span class="like-button__label">
-    Mi Piace
-    </span>
-    </a>`;
-
-    // Contatore Like
-    likes[i].innerHTML += `<div class="likes__counter"> Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone </div>`
 });
 
 // Array con id dei post piaciuti
