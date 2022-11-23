@@ -60,28 +60,44 @@ const container = document.getElementById("container");
 
 
 
-// Creare array di oggetti per i post
+// debug version
 posts.forEach((element, i) => {
-    container.innerHTML = `<div class="post"></div>`;
+    container.innerHTML += `<div class="post"></div>`;
     
-    const post = document.querySelector(".post");
-    post.innerHTML += `<div class="post__header"></div>`;
+    const post = document.getElementsByClassName("post");
+    post[i].innerHTML += `<div class="post__header"></div>`;
 
-    const postHeader = document.querySelector(".post__header");
-    postHeader.innerHTML = `<div class="post-meta"></div>`;
+    const postHeader = document.getElementsByClassName("post__header");
+    postHeader[i].innerHTML = `<div class="post-meta"></div>`;
 
-    const postMeta = document.querySelector(".post-meta");
-    postMeta.innerHTML += `<div class="post-meta__icon"> <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}"> </div>`;
+    const postMeta = document.getElementsByClassName("post-meta");
+    postMeta[i].innerHTML += `<div class="post-meta__icon"> <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}' Pics"> </div>`;
     
-    postMeta.innerHTML += `<div class="post-meta__data"></div>`;
+    postMeta[i].innerHTML += `<div class="post-meta__data"></div>`;
     
-    const postMetaData = document.querySelector(".post-meta__data");
-    postMetaData.innerHTML += `<div class="post-meta__author">${element.author.name}</div>`;
-    postMetaData.innerHTML += `<div class="post-meta__time">${element.created}</div>`;
+    const postMetaData = document.getElementsByClassName("post-meta__data");
+    postMetaData[i].innerHTML += `<div class="post-meta__author">${element.author.name}</div>`;
+    postMetaData[i].innerHTML += `<div class="post-meta__time">${element.created}</div>`;
 
-    post.innerHTML += `<div class="post__text">${element.content}</div>`
+    post[i].innerHTML += `<div class="post__text">${element.content}</div>`
 
-    post.innerHTML += `<div class="post__image"> <img src="${element.media}"> </div>`;
+    post[i].innerHTML += `<div class="post__image"> <img src="${element.media}"> </div>`;
 
-    
+    post[i].innerHTML += `<div class="post__footer"></div>`;
+
+    const postFooter = document.getElementsByClassName("post__footer");
+    postFooter[i].innerHTML = `<div class="likes js-likes"></div>`;
+
+    const likes = document.getElementsByClassName("likes");
+    likes[i].innerHTML +=  `<div class="likes__cta"></div>`;
+
+    const likesCta = document.getElementsByClassName("likes__cta");
+    likesCta[i].innerHTML = `<a class="like-button  js-like-button" href="#" data-postid="${element.id}">
+    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+    <span class="like-button__label">
+    Mi Piace
+    </span>
+    </a>`;
+
+    likes[i].innerHTML += `<div class="likes__counter"> Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone </div>`
 });
