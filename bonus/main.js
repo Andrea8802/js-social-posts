@@ -96,33 +96,24 @@ posts.forEach((element, i) => {
 // Array con id dei post piaciuti
 const liked = [];
 
-// Clone oggetto
-const stato = {...posts}
-
-
 // Ciclo gestione like
 for(let i = 0; i < posts.length; i++){
-
-    // Aggiunta all'oggeto il valore "piaciuto", per controllare se ha già il likes
-    stato[i].piaciuto = false;
 
     // Click sul tasto like
     document.getElementsByClassName("like-button")[i].addEventListener("click",
         function(){
     
+            // Aggiunta classe liked
             this.classList.toggle("like-button--liked");
 
             // Push in array dei post piaciuti
             liked.push(posts[i].id);
-            console.log(liked);
 
             // Controllo per assegnare o togliere il mi piace
-            if (stato[i].piaciuto === false){
-                stato[i].piaciuto = true;
+            if (this.classList[2] === "like-button--liked"){
                 posts[i].likes++;
 
             } else{
-                stato[i].piaciuto = false;
                 posts[i].likes--;
             }
 
