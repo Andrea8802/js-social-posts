@@ -93,8 +93,8 @@ posts.forEach((element, i) => {
 </div>`;
 });
 
-// Array con id dei post piaciuti
-const liked = [];
+
+
 
 // Ciclo gestione like
 for(let i = 0; i < posts.length; i++){
@@ -102,23 +102,28 @@ for(let i = 0; i < posts.length; i++){
     // Click sul tasto like
     document.getElementsByClassName("like-button")[i].addEventListener("click",
         function(){
-    
+
+            // Array con id dei post piaciuti
+            const liked = [];
+
             // Aggiunta classe liked
             this.classList.toggle("like-button--liked");
-
-            // Push in array dei post piaciuti
-            liked.push(posts[i].id);
 
             // Controllo per assegnare o togliere il mi piace
             if (this.classList[2] === "like-button--liked"){
                 posts[i].likes++;
+                liked.push(posts[i].id);
 
             } else{
                 posts[i].likes--;
+                liked.pop(i)
             }
 
             // Stampare numero like aggiornato
             document.getElementsByClassName("js-likes-counter")[i].innerHTML = posts[i].likes;
+
+            // Stampare array id post piaciuti
+            console.log(liked);
 
         }
     )
