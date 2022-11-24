@@ -94,8 +94,6 @@ posts.forEach((element, i) => {
 });
 
 
-
-
 // Ciclo gestione like
 for(let i = 0; i < posts.length; i++){
 
